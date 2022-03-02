@@ -1,0 +1,150 @@
+  
+[student897_3@bigdataanalytics-worker-3 ~]$ export SPARK_KAFKA_VERSION=0.10
+
+[student897_3@bigdataanalytics-worker-3 ~]$ /opt/spark-2.4.8/bin/pyspark --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.4.5,com.datastax.spark:spark-cassandra-connector_2.11:2.4.2
+Python 2.7.5 (default, Nov 16 2020, 22:23:17)
+[GCC 4.8.5 20150623 (Red Hat 4.8.5-44)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+Ivy Default Cache set to: /home/student897_3/.ivy2/cache
+The jars for the packages stored in: /home/student897_3/.ivy2/jars
+:: loading settings :: url = jar:file:/opt/spark-2.4.8/jars/ivy-2.4.0.jar!/org/apache/ivy/core/settings/ivysettings.xml
+org.apache.spark#spark-sql-kafka-0-10_2.11 added as a dependency
+com.datastax.spark#spark-cassandra-connector_2.11 added as a dependency
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-789b7c47-ada3-40c1-bed5-76adbdb7d264;1.0
+        confs: [default]
+        found org.apache.spark#spark-sql-kafka-0-10_2.11;2.4.5 in central
+        found org.apache.kafka#kafka-clients;2.0.0 in central
+        found org.lz4#lz4-java;1.4.0 in central
+        found org.xerial.snappy#snappy-java;1.1.7.3 in central
+        found org.slf4j#slf4j-api;1.7.16 in central
+        found org.spark-project.spark#unused;1.0.0 in central
+        found com.datastax.spark#spark-cassandra-connector_2.11;2.4.2 in central
+        found commons-beanutils#commons-beanutils;1.9.3 in central
+        found commons-collections#commons-collections;3.2.2 in central
+        found com.twitter#jsr166e;1.1.0 in central
+        found org.joda#joda-convert;1.2 in central
+        found io.netty#netty-all;4.0.33.Final in central
+        found joda-time#joda-time;2.3 in central
+        found org.scala-lang#scala-reflect;2.11.7 in central
+:: resolution report :: resolve 521ms :: artifacts dl 8ms
+        :: modules in use:
+        com.datastax.spark#spark-cassandra-connector_2.11;2.4.2 from central in [default]
+        com.twitter#jsr166e;1.1.0 from central in [default]
+        commons-beanutils#commons-beanutils;1.9.3 from central in [default]
+        commons-collections#commons-collections;3.2.2 from central in [default]
+        io.netty#netty-all;4.0.33.Final from central in [default]
+        joda-time#joda-time;2.3 from central in [default]
+        org.apache.kafka#kafka-clients;2.0.0 from central in [default]
+        org.apache.spark#spark-sql-kafka-0-10_2.11;2.4.5 from central in [default]
+        org.joda#joda-convert;1.2 from central in [default]
+        org.lz4#lz4-java;1.4.0 from central in [default]
+        org.scala-lang#scala-reflect;2.11.7 from central in [default]
+        org.slf4j#slf4j-api;1.7.16 from central in [default]
+        org.spark-project.spark#unused;1.0.0 from central in [default]
+        org.xerial.snappy#snappy-java;1.1.7.3 from central in [default]
+        ---------------------------------------------------------------------
+        |                  |            modules            ||   artifacts   |
+        |       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+        ---------------------------------------------------------------------
+        |      default     |   14  |   0   |   0   |   0   ||   14  |   0   |
+        ---------------------------------------------------------------------
+:: retrieving :: org.apache.spark#spark-submit-parent-789b7c47-ada3-40c1-bed5-76adbdb7d264
+        confs: [default]
+        0 artifacts copied, 14 already retrieved (0kB/8ms)
+22/02/18 14:59:09 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+22/02/18 14:59:11 WARN util.Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /__ / .__/\_,_/_/ /_/\_\   version 2.4.8
+      /_/
+
+Using Python version 2.7.5 (default, Nov 16 2020 22:23:17)
+SparkSession available as 'spark'.
+>>> from pyspark.sql.types import StructType, StringType, IntegerType, TimestampType
+>>> from pyspark.sql import functions as F
+>>> cass_nba_df = spark.read \
+...     .format("org.apache.spark.sql.cassandra") \
+...     .options(table="nba_playoffs", keyspace="lesson7") \
+...     .load()
+>>> cass_nba_df.printSchema()
+root
+ |-- team: string (nullable = true)
+ |-- conference: string (nullable = true)
+ |-- conference_position: integer (nullable = true)
+ |-- game_lose: integer (nullable = true)
+ |-- game_lose_home: integer (nullable = true)
+ |-- game_played: integer (nullable = true)
+ |-- game_won: integer (nullable = true)
+ |-- game_won_home: integer (nullable = true)
+ |-- team_short: string (nullable = true)
+
+>>> cass_nba_df.show()
++--------------------+----------+-------------------+---------+--------------+-----------+--------+-------------+----------+
+|                team|conference|conference_position|game_lose|game_lose_home|game_played|game_won|game_won_home|team_short|
++--------------------+----------+-------------------+---------+--------------+-----------+--------+-------------+----------+
+|    Dallas Mavericks|      WEST|                  7|       32|            18|         75|      43|           20|       DAL|
+|       Brooklyn Nets|      EAST|                  7|       37|            16|         72|      35|           20|       BKN|
+|Portland Trail Bl...|      WEST|                  8|       39|            15|         74|      35|           21|       POR|
+|       Orlando Magic|      EAST|                  8|       40|            17|         73|      33|           18|       ORL|
+|     Houston Rockets|      WEST|                  4|       28|            12|         72|      44|           24|       HOU|
+|      Indiana Pacers|      EAST|                  4|       28|            11|         73|      45|           25|       IND|
+|      Boston Celtics|      EAST|                  3|       24|            10|         72|      48|           26|       BOS|
+|           Utah Jazz|      WEST|                  6|       28|            12|         72|      44|           23|       UTA|
+|      Denver Nuggets|      WEST|                  3|       27|            11|         73|      46|           26|       DEN|
+|         LA Clippers|      WEST|                  2|       23|             9|         72|      49|           27|       LAC|
+|Oklahoma City Thu...|      WEST|                  5|       28|            14|         72|      44|           23|       OKC|
+|           LA Lakers|      WEST|                  1|       19|            10|         71|      52|           25|       LAL|
+|  Philadelphia 76ers|      EAST|                  6|       30|             4|         73|      43|           31|       PHI|
+|     Toronto Raptors|      EAST|                  2|       19|            10|         72|      53|           26|       TOR|
+|          Miami Heat|      EAST|                  5|       29|             7|         73|      44|           29|       MIA|
+|     Milwaukee Bucks|      EAST|                  1|       17|             5|         73|      56|           30|       MIL
+
+>>> utah_df = spark.sql("""select "Utah Jazz" as team, "EAST" as conference, 9 as conference_position """)
+>>> utah_df.write \
+...     .format("org.apache.spark.sql.cassandra") \
+...     .options(table="nba_playoffs", keyspace="lesson7") \
+...     .mode("append") \
+...     .save()
+>>> cass_nba_df.show()
++--------------------+----------+-------------------+---------+--------------+-----------+--------+-------------+----------+
+|                team|conference|conference_position|game_lose|game_lose_home|game_played|game_won|game_won_home|team_short|
++--------------------+----------+-------------------+---------+--------------+-----------+--------+-------------+----------+
+|    Dallas Mavericks|      WEST|                  7|       32|            18|         75|      43|           20|       DAL|
+|       Brooklyn Nets|      EAST|                  7|       37|            16|         72|      35|           20|       BKN|
+|Portland Trail Bl...|      WEST|                  8|       39|            15|         74|      35|           21|       POR|
+|       Orlando Magic|      EAST|                  8|       40|            17|         73|      33|           18|       ORL|
+|     Houston Rockets|      WEST|                  4|       28|            12|         72|      44|           24|       HOU|
+|      Indiana Pacers|      EAST|                  4|       28|            11|         73|      45|           25|       IND|
+|      Boston Celtics|      EAST|                  3|       24|            10|         72|      48|           26|       BOS|
+|           Utah Jazz|      EAST|                  9|       28|            12|         72|      44|           23|       UTA|
+|      Denver Nuggets|      WEST|                  3|       27|            11|         73|      46|           26|       DEN|
+|         LA Clippers|      WEST|                  2|       23|             9|         72|      49|           27|       LAC|
+|Oklahoma City Thu...|      WEST|                  5|       28|            14|         72|      44|           23|       OKC|
+|           LA Lakers|      WEST|                  1|       19|            10|         71|      52|           25|       LAL|
+|  Philadelphia 76ers|      EAST|                  6|       30|             4|         73|      43|           31|       PHI|
+|     Toronto Raptors|      EAST|                  2|       19|            10|         72|      53|           26|       TOR|
+|          Miami Heat|      EAST|                  5|       29|             7|         73|      44|           29|       MIA|
+|     Milwaukee Bucks|      EAST|                  1|       17|             5|         73|      56|           30|       MIL|
++--------------------+----------+-------------------+---------+--------------+-----------+--------+-------------+----------+
+
+
+>>> cass_big_df = spark.read \
+...     .format("org.apache.spark.sql.cassandra") \
+...     .options(table="passengers_unknown", keyspace="keyspace1") \
+...     .load()
+
+>>> cass_big_df.filter(F.col("passengerid")=="1111").show()
++-----------+----+-----+--------+----+--------------------+-----+------+----+-----+--------+------+
+|passengerid| age|cabin|embarked|fare|                name|parch|pclass| sex|sibsp|survived|ticket|
++-----------+----+-----+--------+----+--------------------+-----+------+----+-----+--------+------+
+|       1111|null| null|       S|8.05|Thomson, Mr. Alex...|    0|     3|male|    0|    null| 32302|
++-----------+----+-----+--------+----+--------------------+-----+------+----+-----+--------+------+
+
+>>> cass_big_df.filter(F.col("embarked")=="Q").count()
+46
+
+
