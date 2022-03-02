@@ -1,0 +1,49 @@
+[student685_1@bigdataanalytics-worker-3 ~]$ cd /usr/hdp/current/kafka-broker/bin/
+[student685_1@bigdataanalytics-worker-3 bin]$ ls
+connect-distributed.sh        kafka-delete-records.sh              kafka-streams-application-reset.sh
+connect-standalone.sh         kafka-dump-log.sh                    kafka-topics.sh
+kafka                         kafka-log-dirs.sh                    kafka-verifiable-consumer.sh
+kafka-acls.sh                 kafka-mirror-maker.sh                kafka-verifiable-producer.sh
+kafka-broker-api-versions.sh  kafka-preferred-replica-election.sh  trogdor.sh
+kafka-configs.sh              kafka-producer-perf-test.sh          windows
+kafka-console-consumer.sh     kafka-reassign-partitions.sh         zookeeper-security-migration.sh
+kafka-console-producer.sh     kafka-replica-verification.sh        zookeeper-server-start.sh
+kafka-consumer-groups.sh      kafka-run-class.sh                   zookeeper-server-stop.sh
+kafka-consumer-perf-test.sh   kafka-server-start.sh                zookeeper-shell.sh
+kafka-delegation-tokens.sh    kafka-server-stop.sh
+[student685_1@bigdataanalytics-worker-3 bin]$ /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --create --topic pikalev_les2 --zookeeper bigdataanalytics-worker-3:2181 --partitions 3 --replication-factor 2 --config retention.ms=-1
+WARNING: Due to limitations in metric names, topics with a period ('.') or underscore ('_') could collide. To avoid issues it is best to use either, but not both.
+Created topic "pikalev_les2".
+[student685_1@bigdataanalytics-worker-3 bin]$ --describe topic pikalev_les2
+-bash: --describe: command not found
+[student685_1@bigdataanalytics-worker-3 bin]$ --describe --topic pikalev_les2
+-bash: --describe: command not found
+[student685_1@bigdataanalytics-worker-3 bin]$ ./kafka-console-consumer.sh --topic pikalev_les2 --bootstrap-server bigdataanalytics-worker-3:6667
+Hello
+My name Is
+Daniil
+^CProcessed a total of 3 messages
+[student685_1@bigdataanalytics-worker-3 bin]$ ./kafka-console-consumer.sh --topic pikalev_les2 --from-beginning --bootstrap-server bigdataanalytics-worker-3:6667
+My name Is
+Hello
+Daniil
+^CProcessed a total of 3 messages
+[student685_1@bigdataanalytics-worker-3 bin]$ ./kafka-console-consumer.sh --topic pikalev_les2 --from-beginning --bootstrap-server bigdataanalytics-worker-3:6667
+Hello
+My name Is
+Daniil
+message 1
+message 2
+^CProcessed a total of 5 messages
+[student685_1@bigdataanalytics-worker-3 bin]$ ./kafka-console-consumer.sh --topic pikalev_les2 --from-beginning --bootstrap-server bigdataanalytics-worker-3:6667
+My name Is
+message 2
+Hello
+message 1
+Daniil
+^CProcessed a total of 5 messages
+[student685_1@bigdataanalytics-worker-3 bin]$ /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --zookeeper bigdataanalytics-worker-3:2181 --delete --topic pikalev_les2
+Topic pikalev_les2 is marked for deletion.
+Note: This will have no impact if delete.topic.enable is not set to true.
+[student685_1@bigdataanalytics-worker-3 bin]$
+
