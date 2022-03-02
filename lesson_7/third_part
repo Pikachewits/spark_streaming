@@ -1,0 +1,272 @@
+[student897_3@bigdataanalytics-worker-3 ~]$ vi 7.2_spark-submit_stable.py
+[student897_3@bigdataanalytics-worker-3 ~]$ /opt/spark-2.4.8/bin/spark-submit 7.2_spark-submit_stable.py
+22/02/23 15:15:25 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+22/02/23 15:15:26 INFO spark.SparkContext: Running Spark version 2.4.8
+22/02/23 15:15:26 INFO spark.SparkContext: Submitted application: gogin_spark
+22/02/23 15:15:26 INFO spark.SecurityManager: Changing view acls to: student897_3
+22/02/23 15:15:26 INFO spark.SecurityManager: Changing modify acls to: student897_3
+22/02/23 15:15:26 INFO spark.SecurityManager: Changing view acls groups to:
+22/02/23 15:15:26 INFO spark.SecurityManager: Changing modify acls groups to:
+22/02/23 15:15:26 INFO spark.SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(student897_3); groups with view permissions: Set(); users  with modify permissions: Set(student897_3); groups with modify permissions: Set()
+22/02/23 15:15:26 INFO util.Utils: Successfully started service 'sparkDriver' on port 35352.
+22/02/23 15:15:26 INFO spark.SparkEnv: Registering MapOutputTracker
+22/02/23 15:15:26 INFO spark.SparkEnv: Registering BlockManagerMaster
+22/02/23 15:15:26 INFO storage.BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+22/02/23 15:15:26 INFO storage.BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+22/02/23 15:15:26 INFO storage.DiskBlockManager: Created local directory at /tmp/blockmgr-fd22059e-e8c8-4b32-b570-475fcaa12d19
+22/02/23 15:15:26 INFO memory.MemoryStore: MemoryStore started with capacity 366.3 MB
+22/02/23 15:15:26 INFO spark.SparkEnv: Registering OutputCommitCoordinator
+22/02/23 15:15:27 INFO util.log: Logging initialized @3095ms to org.spark_project.jetty.util.log.Slf4jLog
+22/02/23 15:15:27 INFO server.Server: jetty-9.4.z-SNAPSHOT; built: unknown; git: unknown; jvm 1.8.0_191-b12
+22/02/23 15:15:27 INFO server.Server: Started @3252ms
+22/02/23 15:15:27 INFO server.AbstractConnector: Started ServerConnector@2739c335{HTTP/1.1, (http/1.1)}{0.0.0.0:4040}
+22/02/23 15:15:27 INFO util.Utils: Successfully started service 'SparkUI' on port 4040.
+22/02/23 15:15:27 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@58a74f17{/jobs,null,AVAILABLE,@Spark}
+22/02/23 15:15:27 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@5ed386b2{/jobs/json,null,AVAILABLE,@Spark}
+22/02/23 15:15:27 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@71fb3c80{/jobs/job,null,AVAILABLE,@Spark}
+22/02/23 15:15:27 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@4a65dae3{/jobs/job/json,null,AVAILABLE,@Spark}
+22/02/23 15:15:27 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@841230b{/stages,null,AVAILABLE,@Spark}
+22/02/23 15:15:27 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@20f611bf{/stages/json,null,AVAILABLE,@Spark}
+22/02/23 15:15:27 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@1ff4c4d4{/stages/stage,null,AVAILABLE,@Spark}
+22/02/23 15:15:27 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@6a110716{/stages/stage/json,null,AVAILABLE,@Spark}
+22/02/23 15:15:27 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@53faace4{/stages/pool,null,AVAILABLE,@Spark}
+22/02/23 15:15:27 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@3d0e536f{/stages/pool/json,null,AVAILABLE,@Spark}
+22/02/23 15:15:27 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@138a1cb3{/storage,null,AVAILABLE,@Spark}
+22/02/23 15:15:27 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@71c19063{/storage/json,null,AVAILABLE,@Spark}
+22/02/23 15:15:27 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@775a9f33{/storage/rdd,null,AVAILABLE,@Spark}
+22/02/23 15:15:27 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@38803f9c{/storage/rdd/json,null,AVAILABLE,@Spark}
+22/02/23 15:15:27 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@7b2cc3bb{/environment,null,AVAILABLE,@Spark}
+22/02/23 15:15:27 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@6930635{/environment/json,null,AVAILABLE,@Spark}
+22/02/23 15:15:27 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@2513b2d3{/executors,null,AVAILABLE,@Spark}
+22/02/23 15:15:27 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@1cd60532{/executors/json,null,AVAILABLE,@Spark}
+22/02/23 15:15:27 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@1fa2c08{/executors/threadDump,null,AVAILABLE,@Spark}
+22/02/23 15:15:27 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@1f4620ac{/executors/threadDump/json,null,AVAILABLE,@Spark}
+22/02/23 15:15:27 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@27fb8cbd{/static,null,AVAILABLE,@Spark}
+22/02/23 15:15:27 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@2bf007ec{/,null,AVAILABLE,@Spark}
+22/02/23 15:15:27 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@403fff88{/api,null,AVAILABLE,@Spark}
+22/02/23 15:15:27 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@77da4270{/jobs/job/kill,null,AVAILABLE,@Spark}
+22/02/23 15:15:27 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@67c6a251{/stages/stage/kill,null,AVAILABLE,@Spark}
+22/02/23 15:15:27 INFO ui.SparkUI: Bound SparkUI to 0.0.0.0, and started at http://bigdataanalytics-worker-3.mcs.local:4040
+22/02/23 15:15:27 INFO executor.Executor: Starting executor ID driver on host localhost
+22/02/23 15:15:27 INFO util.Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 37468.
+22/02/23 15:15:27 INFO netty.NettyBlockTransferService: Server created on bigdataanalytics-worker-3.mcs.local:37468
+22/02/23 15:15:27 INFO storage.BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+22/02/23 15:15:27 INFO storage.BlockManagerMaster: Registering BlockManager BlockManagerId(driver, bigdataanalytics-worker-3.mcs.local, 37468, None)
+22/02/23 15:15:27 INFO storage.BlockManagerMasterEndpoint: Registering block manager bigdataanalytics-worker-3.mcs.local:37468 with 366.3 MB RAM, BlockManagerId(driver, bigdataanalytics-worker-3.mcs.local, 37468, None)
+22/02/23 15:15:27 INFO storage.BlockManagerMaster: Registered BlockManager BlockManagerId(driver, bigdataanalytics-worker-3.mcs.local, 37468, None)
+22/02/23 15:15:27 INFO storage.BlockManager: Initialized BlockManager: BlockManagerId(driver, bigdataanalytics-worker-3.mcs.local, 37468, None)
+22/02/23 15:15:27 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@69a43903{/metrics/json,null,AVAILABLE,@Spark}
+22/02/23 15:15:28 INFO internal.SharedState: loading hive config file: file:/opt/spark-2.4.8/conf/hive-site.xml
+22/02/23 15:15:28 INFO internal.SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir ('file:/home/student897_3/spark-warehouse').
+22/02/23 15:15:28 INFO internal.SharedState: Warehouse path is 'file:/home/student897_3/spark-warehouse'.
+22/02/23 15:15:28 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@1a484fc3{/SQL,null,AVAILABLE,@Spark}
+22/02/23 15:15:28 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@29fd85fc{/SQL/json,null,AVAILABLE,@Spark}
+22/02/23 15:15:28 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@43672f24{/SQL/execution,null,AVAILABLE,@Spark}
+22/02/23 15:15:28 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@79625bbf{/SQL/execution/json,null,AVAILABLE,@Spark}
+22/02/23 15:15:28 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@333e90d9{/static/sql,null,AVAILABLE,@Spark}
+22/02/23 15:15:29 INFO state.StateStoreCoordinatorRef: Registered StateStoreCoordinator endpoint
+22/02/23 15:15:29 WARN shortcircuit.DomainSocketFactory: The short-circuit local reads feature cannot be used because libhadoop cannot be loaded.
+22/02/23 15:15:29 INFO datasources.InMemoryFileIndex: It took 83 ms to list leaf files for 1 paths.
+22/02/23 15:15:31 INFO streaming.MicroBatchExecution: Starting [id = 1d263ac0-a2ce-4ef1-bf71-279b2ce29d59, runId = cf88811c-3c77-43a0-a11e-c19d6462dc3e]. Use hdfs://bigdataanalytics-head-0.mcs.local:8020/user/student897_3/checkpoints/my_parquet_checkpoint to store the query checkpoint.
+I'M STILL ALIVE
+22/02/23 15:15:31 INFO streaming.FileStreamSourceLog: Set the compact interval to 10 [defaultCompactInterval: 10]
+22/02/23 15:15:31 INFO streaming.FileStreamSource: maxFilesPerBatch = None, maxFileAgeMs = 604800000
+22/02/23 15:15:31 INFO streaming.MicroBatchExecution: Using Source [FileStreamSource[hdfs://bigdataanalytics-head-0.mcs.local:8020/user/student897_3/for_stream]] from DataSourceV1 named 'FileSource[for_stream]' [DataSource(org.apache.spark.sql.SparkSession@4102eebe,csv,List(),Some(StructType(StructField(sector,StringType,true), StructField(name,StringType,true), StructField(region,StringType,true))),List(),None,Map(path -> for_stream, header -> true),None)]
+22/02/23 15:15:31 WARN streaming.OffsetSeqMetadata: Conf 'spark.sql.streaming.multipleWatermarkPolicy' was not found in the offset log, using default value 'min'
+22/02/23 15:15:31 WARN streaming.OffsetSeqMetadata: Conf 'spark.sql.streaming.flatMapGroupsWithState.stateFormatVersion' was not found in the offset log, using default value '1'
+22/02/23 15:15:31 WARN streaming.OffsetSeqMetadata: Conf 'spark.sql.streaming.aggregation.stateFormatVersion' was not found in the offset log, using default value '1'
+22/02/23 15:15:31 INFO streaming.MicroBatchExecution: no commit log present
+22/02/23 15:15:31 INFO streaming.MicroBatchExecution: Resuming at batch 0 with committed offsets {} and available offsets {FileStreamSource[hdfs://bigdataanalytics-head-0.mcs.local:8020/user/student897_3/for_stream]: {"logOffset":0}}
+22/02/23 15:15:31 INFO streaming.MicroBatchExecution: Stream started from {}
+22/02/23 15:15:31 INFO streaming.FileStreamSource: Processing 1 files from 0:0
+22/02/23 15:15:31 INFO datasources.InMemoryFileIndex: It took 5 ms to list leaf files for 1 paths.
+22/02/23 15:15:32 INFO datasources.FileSourceStrategy: Pruning directories with:
+22/02/23 15:15:32 INFO datasources.FileSourceStrategy: Post-Scan Filters:
+22/02/23 15:15:32 INFO datasources.FileSourceStrategy: Output Data Schema: struct<sector: string, name: string, region: string ... 1 more fields>
+22/02/23 15:15:32 INFO execution.FileSourceScanExec: Pushed Filters:
+22/02/23 15:15:33 INFO codegen.CodeGenerator: Code generated in 306.794794 ms
+22/02/23 15:15:33 INFO memory.MemoryStore: Block broadcast_0 stored as values in memory (estimated size 340.9 KB, free 366.0 MB)
+22/02/23 15:15:33 INFO memory.MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 30.4 KB, free 365.9 MB)
+22/02/23 15:15:33 INFO storage.BlockManagerInfo: Added broadcast_0_piece0 in memory on bigdataanalytics-worker-3.mcs.local:37468 (size: 30.4 KB, free: 366.3 MB)
+22/02/23 15:15:33 INFO spark.SparkContext: Created broadcast 0 from start at NativeMethodAccessorImpl.java:0
+22/02/23 15:15:33 INFO execution.FileSourceScanExec: Planning scan with bin packing, max size: 4194304 bytes, open cost is considered as scanning 4194304 bytes.
+START BATCH LOADING. TIME = 20220223151533
+22/02/23 15:15:34 INFO parquet.ParquetFileFormat: Using default output committer for Parquet: org.apache.parquet.hadoop.ParquetOutputCommitter
+22/02/23 15:15:34 INFO output.FileOutputCommitter: File Output Committer Algorithm version is 1
+22/02/23 15:15:34 INFO datasources.SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+22/02/23 15:15:34 INFO output.FileOutputCommitter: File Output Committer Algorithm version is 1
+22/02/23 15:15:34 INFO datasources.SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+22/02/23 15:15:34 INFO codegen.CodeGenerator: Code generated in 87.908782 ms
+22/02/23 15:15:34 INFO spark.SparkContext: Starting job: parquet at NativeMethodAccessorImpl.java:0
+22/02/23 15:15:34 INFO scheduler.DAGScheduler: Got job 0 (parquet at NativeMethodAccessorImpl.java:0) with 1 output partitions
+22/02/23 15:15:34 INFO scheduler.DAGScheduler: Final stage: ResultStage 0 (parquet at NativeMethodAccessorImpl.java:0)
+22/02/23 15:15:34 INFO scheduler.DAGScheduler: Parents of final stage: List()
+22/02/23 15:15:34 INFO scheduler.DAGScheduler: Missing parents: List()
+22/02/23 15:15:34 INFO scheduler.DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[5] at parquet at NativeMethodAccessorImpl.java:0), which has no missing parents
+22/02/23 15:15:34 INFO memory.MemoryStore: Block broadcast_1 stored as values in memory (estimated size 191.2 KB, free 365.8 MB)
+22/02/23 15:15:34 INFO memory.MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 72.7 KB, free 365.7 MB)
+22/02/23 15:15:34 INFO storage.BlockManagerInfo: Added broadcast_1_piece0 in memory on bigdataanalytics-worker-3.mcs.local:37468 (size: 72.7 KB, free: 366.2 MB)
+22/02/23 15:15:34 INFO spark.SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:1184
+22/02/23 15:15:34 INFO scheduler.DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[5] at parquet at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+22/02/23 15:15:34 INFO scheduler.TaskSchedulerImpl: Adding task set 0.0 with 1 tasks
+22/02/23 15:15:34 INFO scheduler.TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, localhost, executor driver, partition 0, ANY, 8317 bytes)
+22/02/23 15:15:34 INFO executor.Executor: Running task 0.0 in stage 0.0 (TID 0)
+22/02/23 15:15:34 INFO output.FileOutputCommitter: File Output Committer Algorithm version is 1
+22/02/23 15:15:34 INFO datasources.SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+22/02/23 15:15:34 INFO output.FileOutputCommitter: File Output Committer Algorithm version is 1
+22/02/23 15:15:34 INFO datasources.SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+22/02/23 15:15:34 INFO codec.CodecConfig: Compression: SNAPPY
+22/02/23 15:15:34 INFO codec.CodecConfig: Compression: SNAPPY
+22/02/23 15:15:35 INFO hadoop.ParquetOutputFormat: Parquet block size to 134217728
+22/02/23 15:15:35 INFO hadoop.ParquetOutputFormat: Parquet page size to 1048576
+22/02/23 15:15:35 INFO hadoop.ParquetOutputFormat: Parquet dictionary page size to 1048576
+22/02/23 15:15:35 INFO hadoop.ParquetOutputFormat: Dictionary is on
+22/02/23 15:15:35 INFO hadoop.ParquetOutputFormat: Validation is off
+22/02/23 15:15:35 INFO hadoop.ParquetOutputFormat: Writer version is: PARQUET_1_0
+22/02/23 15:15:35 INFO hadoop.ParquetOutputFormat: Maximum row group padding size is 8388608 bytes
+22/02/23 15:15:35 INFO hadoop.ParquetOutputFormat: Page size checking is: estimated
+22/02/23 15:15:35 INFO hadoop.ParquetOutputFormat: Min row count for page size check is: 100
+22/02/23 15:15:35 INFO hadoop.ParquetOutputFormat: Max row count for page size check is: 10000
+22/02/23 15:15:35 INFO parquet.ParquetWriteSupport: Initialized Parquet WriteSupport with Catalyst schema:
+{
+  "type" : "struct",
+  "fields" : [ {
+    "name" : "sector",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "name",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "region",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "p_date",
+    "type" : "string",
+    "nullable" : false,
+    "metadata" : { }
+  } ]
+}
+and corresponding Parquet message type:
+message spark_schema {
+  optional binary sector (UTF8);
+  optional binary name (UTF8);
+  optional binary region (UTF8);
+  required binary p_date (UTF8);
+}
+
+
+22/02/23 15:15:35 INFO compress.CodecPool: Got brand-new compressor [.snappy]
+22/02/23 15:15:35 INFO datasources.FileScanRDD: Reading File path: hdfs://bigdataanalytics-head-0.mcs.local:8020/user/student897_3/for_stream/INDIA_ENERGY_RESOURCES.csv, range: 0-24697, partition values: [empty row]
+22/02/23 15:15:35 INFO codegen.CodeGenerator: Code generated in 21.284967 ms
+22/02/23 15:15:35 WARN csv.CSVDataSource: Number of column in CSV header is not equal to number of fields in the schema:
+ Header length: 6, schema size: 3
+CSV file: hdfs://bigdataanalytics-head-0.mcs.local:8020/user/student897_3/for_stream/INDIA_ENERGY_RESOURCES.csv
+22/02/23 15:15:35 INFO codegen.CodeGenerator: Code generated in 25.686669 ms
+22/02/23 15:15:35 INFO hadoop.InternalParquetRecordWriter: Flushing mem columnStore to file. allocated memory: 14987
+22/02/23 15:15:35 INFO output.FileOutputCommitter: Saved output of task 'attempt_20220223151534_0000_m_000000_0' to hdfs://bigdataanalytics-head-0.mcs.local:8020/user/student897_3/my_submit_parquet_files/p_date=20220223151533/_temporary/0/task_20220223151534_0000_m_000000
+22/02/23 15:15:35 INFO mapred.SparkHadoopMapRedUtil: attempt_20220223151534_0000_m_000000_0: Committed
+22/02/23 15:15:36 INFO executor.Executor: Finished task 0.0 in stage 0.0 (TID 0). 2354 bytes result sent to driver
+22/02/23 15:15:36 INFO scheduler.TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 1218 ms on localhost (executor driver) (1/1)
+22/02/23 15:15:36 INFO scheduler.TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool
+22/02/23 15:15:36 INFO scheduler.DAGScheduler: ResultStage 0 (parquet at NativeMethodAccessorImpl.java:0) finished in 1.371 s
+22/02/23 15:15:36 INFO scheduler.DAGScheduler: Job 0 finished: parquet at NativeMethodAccessorImpl.java:0, took 1.426197 s
+22/02/23 15:15:36 INFO datasources.FileFormatWriter: Write Job bd5e3219-9b27-4d26-9972-9515c151f37e committed.
+22/02/23 15:15:36 INFO datasources.FileFormatWriter: Finished processing stats for write job bd5e3219-9b27-4d26-9972-9515c151f37e.
+FINISHED BATCH LOADING. TIME = 20220223151533
+22/02/23 15:15:36 INFO streaming.CheckpointFileManager: Writing atomically to hdfs://bigdataanalytics-head-0.mcs.local:8020/user/student897_3/checkpoints/my_parquet_checkpoint/commits/0 using temp file hdfs://bigdataanalytics-head-0.mcs.local:8020/user/student897_3/checkpoints/my_parquet_checkpoint/commits/.0.e074a2ee-3235-4e82-961e-7a341641ef83.tmp
+22/02/23 15:15:36 INFO streaming.CheckpointFileManager: Renamed temp file hdfs://bigdataanalytics-head-0.mcs.local:8020/user/student897_3/checkpoints/my_parquet_checkpoint/commits/.0.e074a2ee-3235-4e82-961e-7a341641ef83.tmp to hdfs://bigdataanalytics-head-0.mcs.local:8020/user/student897_3/checkpoints/my_parquet_checkpoint/commits/0
+22/02/23 15:15:36 INFO streaming.MicroBatchExecution: Streaming query made progress: {
+  "id" : "1d263ac0-a2ce-4ef1-bf71-279b2ce29d59",
+  "runId" : "cf88811c-3c77-43a0-a11e-c19d6462dc3e",
+  "name" : null,
+  "timestamp" : "2022-02-23T15:15:31.891Z",
+  "batchId" : 0,
+  "numInputRows" : 322,
+  "processedRowsPerSecond" : 75.32163742690058,
+  "durationMs" : {
+    "addBatch" : 3715,
+    "getBatch" : 48,
+    "queryPlanning" : 402,
+    "triggerExecution" : 4274
+  },
+  "stateOperators" : [ ],
+  "sources" : [ {
+    "description" : "FileStreamSource[hdfs://bigdataanalytics-head-0.mcs.local:8020/user/student897_3/for_stream]",
+    "startOffset" : null,
+    "endOffset" : {
+      "logOffset" : 0
+    },
+    "numInputRows" : 322,
+    "processedRowsPerSecond" : 75.32163742690058
+  } ],
+  "sink" : {
+    "description" : "ForeachBatchSink"
+  }
+}
+22/02/23 15:15:40 INFO datasources.InMemoryFileIndex: It took 4 ms to list leaf files for 1 paths.
+22/02/23 15:15:40 INFO streaming.MicroBatchExecution: Streaming query made progress: {
+  "id" : "1d263ac0-a2ce-4ef1-bf71-279b2ce29d59",
+  "runId" : "cf88811c-3c77-43a0-a11e-c19d6462dc3e",
+  "name" : null,
+  "timestamp" : "2022-02-23T15:15:40.001Z",
+  "batchId" : 1,
+  "numInputRows" : 0,
+  "inputRowsPerSecond" : 0.0,
+  "processedRowsPerSecond" : 0.0,
+  "durationMs" : {
+    "getOffset" : 21,
+    "triggerExecution" : 29
+  },
+  "stateOperators" : [ ],
+  "sources" : [ {
+    "description" : "FileStreamSource[hdfs://bigdataanalytics-head-0.mcs.local:8020/user/student897_3/for_stream]",
+    "startOffset" : {
+      "logOffset" : 0
+    },
+    "endOffset" : {
+      "logOffset" : 0
+    },
+    "numInputRows" : 0,
+    "inputRowsPerSecond" : 0.0,
+    "processedRowsPerSecond" : 0.0
+  } ],
+  "sink" : {
+    "description" : "ForeachBatchSink"
+  }
+}
+I'M STILL ALIVE
+I'M STILL ALIVE
+22/02/23 15:15:50 INFO datasources.InMemoryFileIndex: It took 7 ms to list leaf files for 1 paths.
+
+^C22/02/23 15:15:56 INFO spark.SparkContext: Invoking stop() from shutdown hook
+Traceback (most recent call last):
+  File "/home/student897_3/7.2_spark-submit_stable.py", line 41, in <module>
+    stream.awaitTermination(9)
+  File "/opt/spark-2.4.8/python/lib/pyspark.zip/pyspark/sql/streaming.py", line 101, in awaitTermination
+  File "/opt/spark-2.4.8/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py", line 1255, in __call__
+  File "/opt/spark-2.4.8/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py", line 985, in send_command
+  File "/opt/spark-2.4.8/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py", line 1152, in send_command
+  File "/usr/lib64/python2.7/socket.py", line 447, in readline
+    data = self._sock.recv(self._rbufsize)
+  File "/opt/spark-2.4.8/python/lib/pyspark.zip/pyspark/context.py", line 270, in signal_handler
+KeyboardInterrupt
+22/02/23 15:15:56 INFO server.AbstractConnector: Stopped Spark@2739c335{HTTP/1.1, (http/1.1)}{0.0.0.0:4040}
+22/02/23 15:15:56 INFO ui.SparkUI: Stopped Spark web UI at http://bigdataanalytics-worker-3.mcs.local:4040
+22/02/23 15:15:56 INFO spark.MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+22/02/23 15:15:56 INFO memory.MemoryStore: MemoryStore cleared
+22/02/23 15:15:56 INFO storage.BlockManager: BlockManager stopped
+22/02/23 15:15:56 INFO storage.BlockManagerMaster: BlockManagerMaster stopped
+22/02/23 15:15:56 INFO scheduler.OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+22/02/23 15:15:56 INFO spark.SparkContext: Successfully stopped SparkContext
+22/02/23 15:15:56 INFO util.ShutdownHookManager: Shutdown hook called
+22/02/23 15:15:56 INFO util.ShutdownHookManager: Deleting directory /tmp/spark-fb36765c-61f1-4fec-994b-98cfb4586b95
+22/02/23 15:15:56 INFO util.ShutdownHookManager: Deleting directory /tmp/spark-d26eff02-4af1-46d4-9756-7ab5f1bc9ee4/pyspark-53725ace-4aa8-49e2-b935-672ef32502be
+22/02/23 15:15:56 INFO util.ShutdownHookManager: Deleting directory /tmp/spark-d26eff02-4af1-46d4-9756-7ab5f1bc9ee4
+[student897_3@bigdataanalytics-worker-3 ~]$
+
