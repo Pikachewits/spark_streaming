@@ -1,0 +1,36 @@
+>>> def explain(self, extended=True):
+...     if extended:
+...         print(self._jdf.queryExecution().toString())
+...     else:
+...         print(self._jdf.queryExecution().simpleString())
+...
+>>> cass_big_df.filter(F.col("passengerid")=="10").explain()
+== Physical Plan ==
+*(1) Filter isnotnull(passengerid#206)
++- *(1) Scan org.apache.spark.sql.cassandra.CassandraSourceRelation@336c9780 [passengerid#206,age#207,cabin#208,embarked#209,fare#210,name#211,parch#212,pclass#213,sex#214,sibsp#215,survived#216,ticket#217] PushedFilters: [IsNotNull(passengerid), *EqualTo(passengerid,10)], ReadSchema: struct<passengerid:int,age:float,cabin:string,embarked:string,fare:float,name:string,parch:int,pc...
+
+>>> cass_big_df.filter(F.col("embarked")=="Q").explain()
+== Physical Plan ==
+*(1) Filter (isnotnull(embarked#209) && (embarked#209 = Q))
++- *(1) Scan org.apache.spark.sql.cassandra.CassandraSourceRelation@336c9780 [passengerid#206,age#207,cabin#208,embarked#209,fare#210,name#211,parch#212,pclass#213,sex#214,sibsp#215,survived#216,ticket#217] PushedFilters: [IsNotNull(embarked), EqualTo(embarked,Q)], ReadSchema: struct<passengerid:int,age:float,cabin:string,embarked:string,fare:float,name:string,parch:int,pc...
+
+>>> cass_big_df.createOrReplaceTempView("cass_df")
+
+>>> spark.sql("""
+... select *
+... from cass_df
+... where passengerid between 1111 and 1112
+... """).explain()
+22/02/18 16:04:59 WARN shortcircuit.DomainSocketFactory: The short-circuit local reads feature cannot be used because libhadoop cannot be loaded.
+== Physical Plan ==
+*(1) Filter ((isnotnull(passengerid#206) && (passengerid#206 >= 1111)) && (passengerid#206 <= 1112))
++- *(1) Scan org.apache.spark.sql.cassandra.CassandraSourceRelation@336c9780 [passengerid#206,age#207,cabin#208,embarked#209,fare#210,name#211,parch#212,pclass#213,sex#214,sibsp#215,survived#216,ticket#217] PushedFilters: [IsNotNull(passengerid), GreaterThanOrEqual(passengerid,1111), LessThanOrEqual(passengerid,1112)], ReadSchema: struct<passengerid:int,age:float,cabin:string,embarked:string,fare:float,name:string,parch:int,pc...
+
+>>> sql_select = spark.sql("""
+... select *
+... from cass_df
+... where passengerid in (650,800)
+... """).explain()
+== Physical Plan ==
+*(1) Scan org.apache.spark.sql.cassandra.CassandraSourceRelation@336c9780 [passengerid#206,age#207,cabin#208,embarked#209,fare#210,name#211,parch#212,pclass#213,sex#214,sibsp#215,survived#216,ticket#217] PushedFilters: [*In(passengerid, [650,800])], ReadSchema: struct<passengerid:int,age:float,cabin:string,embarked:string,fare:float,name:string,parch:int,pc...
+
