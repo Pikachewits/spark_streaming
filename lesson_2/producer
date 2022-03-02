@@ -1,0 +1,11 @@
+Last login: Wed Jan 19 16:49:16 2022 from 146.66.183.48
+[student685_1@bigdataanalytics-worker-3 ~]$ cd /usr/hdp/current/kafka-broker/bin/
+[student685_1@bigdataanalytics-worker-3 bin]$ ./kafka-console-producer.sh --topic pikalev_les2 --broker-list bigdataanalytics-worker-0:6667
+>Hello
+>My name Is
+>Daniil
+>message 1
+>message 2
+>^C[student685_1@bigdataanalytics-worker-3 bin]$ ./kafka-console-producer.sh --topic pikalev_les2 --broker-list bigdataanalytics-worker-0:6667
+>^C[student685_1@bigdataanalytics-worker-3 bin]$
+
