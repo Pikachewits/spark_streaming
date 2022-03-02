@@ -31,7 +31,7 @@ Daniil
 [student685_1@bigdataanalytics-worker-3 bin]$ ./kafka-console-consumer.sh --topic pikalev_les2 --from-beginning --bootstrap-server bigdataanalytics-worker-3:6667
 Hello
 My name Is
-Daniil
+Daniil 
 message 1
 message 2
 ^CProcessed a total of 5 messages
