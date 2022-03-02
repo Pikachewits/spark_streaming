@@ -1,0 +1,130 @@
+[student897_3@bigdataanalytics-worker-3 ~]$ cqlsh
+Connected to Test Cluster at 127.0.0.1:9042
+[cqlsh 6.0.0 | Cassandra 4.0.1 | CQL spec 3.4.5 | Native protocol v5]
+Use HELP for help.
+cqlsh> SELECT keyspace_name, table_name FROM system_schema.tables;
+
+ keyspace_name          | table_name
+------------------------+--------------------------------
+             st_lesson7 |                 covid_variants
+             st_lesson7 |                          heart
+             st_lesson7 |                    heart_check
+             st_lesson7 |                     st_animals
+          keyspace_sapr |                   sapr_shtatka
+          test_keyspace |                          birds
+          iris_keyspace |                           iris
+             lesson7_13 |                        animals
+             lesson7_13 |                      animals_w
+                  less7 |                        animals
+                  less7 |                      animals_2
+               lesson_n |                        animals
+            system_auth |            network_permissions
+            system_auth | resource_role_permissons_index
+            system_auth |                   role_members
+            system_auth |               role_permissions
+            system_auth |                          roles
+               projectx |                    users_known
+          system_schema |                     aggregates
+          system_schema |                        columns
+          system_schema |                dropped_columns
+          system_schema |                      functions
+          system_schema |                        indexes
+          system_schema |                      keyspaces
+          system_schema |                         tables
+          system_schema |                       triggers
+          system_schema |                          types
+          system_schema |                          views
+                 s559_6 |                 s559_6_animals
+                 s559_6 |                          users
+           lesson7_emil |                         people
+                lesson7 |                        animals
+                lesson7 |                      animals_2
+                lesson7 |                        clients
+                lesson7 |              dg_bank_marketing
+                lesson7 |                     dg_vgsales
+                lesson7 |                     just_books
+                lesson7 |                oganesyan_table
+                lesson7 |                         sensor
+                lesson7 |                  serge_animals
+                lesson7 |                shadrin_animals
+                lesson7 |               tweets_by_year_2
+              keyspace1 |                       bnk_test
+              keyspace1 |                      bnk_train
+              keyspace1 |             passengers_unknown
+              keyspace1 |                     prog_langs
+              keyspace1 |             shop_users_unknown
+              keyspace1 |                  users_unknown
+ keyspace_student559_17 |                           iris
+     system_distributed |          parent_repair_history
+     system_distributed |                 repair_history
+     system_distributed |              view_build_status
+             lesson7_12 |                        animals
+             lesson7_12 |                      animals_2
+                 system |                      IndexInfo
+                 system |               available_ranges
+                 system |            available_ranges_v2
+                 system |                        batches
+                 system |                    built_views
+                 system |             compaction_history
+                 system |                          local
+                 system |                          paxos
+                 system |                    peer_events
+                 system |                 peer_events_v2
+                 system |                          peers
+                 system |                       peers_v2
+                 system |            prepared_statements
+                 system |                        repairs
+                 system |                 size_estimates
+                 system |               sstable_activity
+                 system |                table_estimates
+                 system |             transferred_ranges
+                 system |          transferred_ranges_v2
+                 system |        view_builds_in_progress
+        student559_12_2 |                   universities
+          student559_12 |                        example
+          keyspace_test |                shadrin_animals
+                iris_df |                           iris
+          system_traces |                         events
+          system_traces |                       sessions
+             lesson7_20 |                  aircraft_copy
+             lesson7_20 |                  aircraft_rows
+             lesson7_20 |                        animals
+
+(83 rows)
+cqlsh> use lesson7;
+cqlsh:lesson7> DESCRIBE TABLES;
+
+animals_2  dg_bank_marketing  just_books       sensor         shadrin_animals
+clients    dg_vgsales         oganesyan_table  serge_animals  tweets_by_year_2
+
+cqlsh:lesson7> CREATE TABLE nba_playoffs (team text, team_short text, conference text, game_won int, game_lose int, conference_posi                           tion int, game_played int, game_won_home int, game_lose_home int, PRIMARY KEY(team));
+cqlsh:lesson7> COPY nba_playoffs  (team, team_short, conference, game_won, game_lose, conference_position, game_played, game_won_home, game_lose_home) FROM '/home/student897_3/some_data/nba_playoffs_meta.csv' WITH DELIMITER=',' AND HEADER=True;
+Using 3 child processes
+
+Starting copy of lesson7.nba_playoffs with columns [team, team_short, conference, game_won, game_lose, conference_position, game_played, points_scored, points_missed, game_won_home, game_lose_home, game_won_away, game_lose_away].
+Processed: 16 rows; Rate:      25 rows/s; Avg. rate:      38 rows/s
+16 rows imported from 1 files in 0.425 seconds (0 skipped).
+cqlsh:lesson7> SELECT * FROM nba_playoffs;
+
+ team                   | conference | conference_position | game_lose | game_lose_home | game_played | game_won | game_won_home | points_scored | team_short
+------------------------+------------+---------------------+-----------+----------------+-------------+----------+---------------+---------------+------------
+         Boston Celtics |       EAST |                   3 |        24 |             10 |          72 |       48 |            26 |          8183 |        BOS
+              Utah Jazz |       WEST |                   6 |        28 |             12 |          72 |       44 |            23 |          7950 |        UTA
+         Denver Nuggets |       WEST |                   3 |        27 |             11 |          73 |       46 |            26 |          8124 |        DEN
+            LA Clippers |       WEST |                   2 |        23 |              9 |          72 |       49 |            27 |          8377 |        LAC
+             Miami Heat |       EAST |                   5 |        29 |              7 |          73 |       44 |            29 |          8179 |        MIA
+     Philadelphia 76ers |       EAST |                   6 |        30 |              4 |          73 |       43 |            31 |          8084 |        PHI
+        Toronto Raptors |       EAST |                   2 |        19 |             10 |          72 |       53 |            26 |          8118 |        TOR
+  Oklahoma City Thunder |       WEST |                   5 |        28 |             14 |          72 |       44 |            23 |          8013 |        OKC
+              LA Lakers |       WEST |                   1 |        19 |             10 |          71 |       52 |            25 |          8054 |        LAL
+        Milwaukee Bucks |       EAST |                   1 |        17 |              5 |          73 |       56 |            30 |          8663 |        MIL
+       Dallas Mavericks |       WEST |                   7 |        32 |             18 |          75 |       43 |            20 |          8776 |        DAL
+          Brooklyn Nets |       EAST |                   7 |        37 |             16 |          72 |       35 |            20 |          8048 |        BKN
+ Portland Trail Blazers |       WEST |                   8 |        39 |             15 |          74 |       35 |            21 |          8508 |        POR
+          Orlando Magic |       EAST |                   8 |        40 |             17 |          73 |       33 |            18 |          7831 |        ORL
+        Houston Rockets |       WEST |                   4 |        28 |             12 |          72 |       44 |            24 |          8482 |        HOU
+         Indiana Pacers |       EAST |                   4 |        28 |             11 |          73 |       45 |            25 |          7989 |        IND
+
+(16 rows)
+cqlsh:lesson7>
+
