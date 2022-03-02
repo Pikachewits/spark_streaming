@@ -1,0 +1,229 @@
+[student685_1@bigdataanalytics-worker-3 ~]$ export SPARK_KAFKA_VERSION=0.10
+[student685_1@bigdataanalytics-worker-3 ~]$ pyspark --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.3.2
+SPARK_MAJOR_VERSION is set to 2, using Spark2
+Python 2.7.5 (default, Nov 16 2020, 22:23:17)
+[GCC 4.8.5 20150623 (Red Hat 4.8.5-44)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+Ivy Default Cache set to: /home/student685_1/.ivy2/cache
+The jars for the packages stored in: /home/student685_1/.ivy2/jars
+:: loading settings :: url = jar:file:/usr/hdp/3.1.4.0-315/spark2/jars/ivy-2.4.0.jar!/org/apache/ivy/core/settings/ivy                                        settings.xml
+org.apache.spark#spark-sql-kafka-0-10_2.11 added as a dependency
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-df70f311-c8b1-419e-b9c8-7c6ba77af528;1.0
+        confs: [default]
+        found org.apache.spark#spark-sql-kafka-0-10_2.11;2.3.2 in central
+        found org.apache.kafka#kafka-clients;0.10.0.1 in central
+        found net.jpountz.lz4#lz4;1.3.0 in central
+        found org.xerial.snappy#snappy-java;1.1.2.6 in central
+        found org.slf4j#slf4j-api;1.7.16 in central
+        found org.spark-project.spark#unused;1.0.0 in central
+:: resolution report :: resolve 318ms :: artifacts dl 8ms
+        :: modules in use:
+        net.jpountz.lz4#lz4;1.3.0 from central in [default]
+        org.apache.kafka#kafka-clients;0.10.0.1 from central in [default]
+        org.apache.spark#spark-sql-kafka-0-10_2.11;2.3.2 from central in [default]
+        org.slf4j#slf4j-api;1.7.16 from central in [default]
+        org.spark-project.spark#unused;1.0.0 from central in [default]
+        org.xerial.snappy#snappy-java;1.1.2.6 from central in [default]
+        ---------------------------------------------------------------------
+        |                  |            modules            ||   artifacts   |
+        |       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+        ---------------------------------------------------------------------
+        |      default     |   6   |   0   |   0   |   0   ||   6   |   0   |
+        ---------------------------------------------------------------------
+:: retrieving :: org.apache.spark#spark-submit-parent-df70f311-c8b1-419e-b9c8-7c6ba77af528
+        confs: [default]
+        0 artifacts copied, 6 already retrieved (0kB/6ms)
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+22/02/02 22:27:41 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+22/02/02 22:27:41 WARN Utils: Service 'SparkUI' could not bind on port 4041. Attempting port 4042.
+22/02/02 22:27:41 WARN Utils: Service 'SparkUI' could not bind on port 4042. Attempting port 4043.
+22/02/02 22:27:41 WARN Utils: Service 'SparkUI' could not bind on port 4043. Attempting port 4044.
+22/02/02 22:27:44 WARN Client: Same path resource file:///home/student685_1/.ivy2/jars/org.apache.spark_spark-sql-kafk                                        a-0-10_2.11-2.3.2.jar added multiple times to distributed cache.
+22/02/02 22:27:44 WARN Client: Same path resource file:///home/student685_1/.ivy2/jars/org.apache.kafka_kafka-clients-                                        0.10.0.1.jar added multiple times to distributed cache.
+22/02/02 22:27:44 WARN Client: Same path resource file:///home/student685_1/.ivy2/jars/org.spark-project.spark_unused-                                        1.0.0.jar added multiple times to distributed cache.
+22/02/02 22:27:44 WARN Client: Same path resource file:///home/student685_1/.ivy2/jars/net.jpountz.lz4_lz4-1.3.0.jar a                                        dded multiple times to distributed cache.
+22/02/02 22:27:44 WARN Client: Same path resource file:///home/student685_1/.ivy2/jars/org.xerial.snappy_snappy-java-1                                        .1.2.6.jar added multiple times to distributed cache.
+22/02/02 22:27:44 WARN Client: Same path resource file:///home/student685_1/.ivy2/jars/org.slf4j_slf4j-api-1.7.16.jar                                         added multiple times to distributed cache.
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /__ / .__/\_,_/_/ /_/\_\   version 2.3.2.3.1.4.0-315
+      /_/
+
+Using Python version 2.7.5 (default, Nov 16 2020 22:23:17)
+SparkSession available as 'spark'.
+>>> from pyspark.sql import functions as F
+>>> from pyspark.sql.types import StructType, StringType, FloatType
+>>> kafka_brokers = "bigdataanalytics-worker-3:6667"
+>>> def console_output(df, freq):
+...     return df.writeStream \
+...         .format("console") \
+...         .trigger(processingTime='%s seconds' % freq ) \
+...         .options(truncate=True) \
+...         .start()
+...
+>>> raw_orders = spark.read. \
+...     format("kafka"). \
+...     option("kafka.bootstrap.servers", kafka_brokers). \
+...     option("subscribe", "shadrin_iris_pikalev"). \
+...     option("startingOffsets", "earliest"). \
+...     load()
+>>> raw_orders.show()
++----+--------------------+--------------------+---------+------+--------------------+-------------+
+| key|               value|               topic|partition|offset|           timestamp|timestampType|
++----+--------------------+--------------------+---------+------+--------------------+-------------+
+|null|                [5B]|shadrin_iris_pikalev|        0|     0|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|     1|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|     2|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|     3|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|     4|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|     5|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|     6|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|     7|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|     8|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|     9|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|    10|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|    11|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|    12|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|    13|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|    14|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|    15|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|    16|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|    17|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|    18|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|    19|2022-01-24 17:53:...|            0|
++----+--------------------+--------------------+---------+------+--------------------+-------------+
+only showing top 20 rows
+
+>>> raw_orders.show(1)
++----+-----+--------------------+---------+------+--------------------+-------------+
+| key|value|               topic|partition|offset|           timestamp|timestampType|
++----+-----+--------------------+---------+------+--------------------+-------------+
+|null| [5B]|shadrin_iris_pikalev|        0|     0|2022-01-24 17:53:...|            0|
++----+-----+--------------------+---------+------+--------------------+-------------+
+only showing top 1 row
+
+>>> raw_data = spark.readStream. \
+...     format("kafka"). \
+...     option("kafka.bootstrap.servers", kafka_brokers). \
+...     option("subscribe", "shadrin_iris_pikalev"). \
+...     option("startingOffsets", "earliest"). \
+...     option("maxOffsetsPerTrigger", "5"). \
+...     load()
+>>> out = console_output(raw_data, 10)
+-------------------------------------------
+Batch: 0
+-------------------------------------------
++----+--------------------+--------------------+---------+------+--------------------+-------------+
+| key|               value|               topic|partition|offset|           timestamp|timestampType|
++----+--------------------+--------------------+---------+------+--------------------+-------------+
+|null|                [5B]|shadrin_iris_pikalev|        0|     0|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|     1|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|     2|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|     3|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|     4|2022-01-24 17:53:...|            0|
++----+--------------------+--------------------+---------+------+--------------------+-------------+
+
+-------------------------------------------
+Batch: 1
+-------------------------------------------
++----+--------------------+--------------------+---------+------+--------------------+-------------+
+| key|               value|               topic|partition|offset|           timestamp|timestampType|
++----+--------------------+--------------------+---------+------+--------------------+-------------+
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|     5|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|     6|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|     7|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|     8|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|     9|2022-01-24 17:53:...|            0|
++----+--------------------+--------------------+---------+------+--------------------+-------------+
+
+-------------------------------------------
+Batch: 2
+-------------------------------------------
++----+--------------------+--------------------+---------+------+--------------------+-------------+
+| key|               value|               topic|partition|offset|           timestamp|timestampType|
++----+--------------------+--------------------+---------+------+--------------------+-------------+
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|    10|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|    11|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|    12|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|    13|2022-01-24 17:53:...|            0|
+|null|[20 20 7B 22 73 6...|shadrin_iris_pikalev|        0|    14|2022-01-24 17:53:...|            0|
++----+--------------------+--------------------+---------+------+--------------------+-------------+
+
+out.stop()
+>>> raw_data.printSchema()
+root
+ |-- key: binary (nullable = true)
+ |-- value: binary (nullable = true)
+ |-- topic: string (nullable = true)
+ |-- partition: integer (nullable = true)
+ |-- offset: long (nullable = true)
+ |-- timestamp: timestamp (nullable = true)
+ |-- timestampType: integer (nullable = true)
+
+>>> schema = StructType() \
+...     .add("sepalLength", FloatType()) \
+...     .add("sepalWidth", FloatType()) \
+...     .add("petalLength", FloatType()) \
+...     .add("petalWidth", FloatType()) \
+...     .add("species", StringType())
+>>> value_iris = raw_data \
+...     .select(
+...         F.from_json(F.col("value").cast("String"), schema).alias("value"),
+...         "offset"
+...     )
+>>> value_iris.printSchema()
+root
+ |-- value: struct (nullable = true)
+ |    |-- sepalLength: float (nullable = true)
+ |    |-- sepalWidth: float (nullable = true)
+ |    |-- petalLength: float (nullable = true)
+ |    |-- petalWidth: float (nullable = true)
+ |    |-- species: string (nullable = true)
+ |-- offset: long (nullable = true)
+
+>>> parsed_iris = value_iris.select("value.*", "offset")
+>>> parsed_iris.printSchema()
+root
+ |-- sepalLength: float (nullable = true)
+ |-- sepalWidth: float (nullable = true)
+ |-- petalLength: float (nullable = true)
+ |-- petalWidth: float (nullable = true)
+ |-- species: string (nullable = true)
+ |-- offset: long (nullable = true)
+
+>>> out = console_output(parsed_iris.withColumn(
+...     'foo',
+...     F.col("sepalLength") / F.col("petalLength")
+... ), 30)
+>>> -------------------------------------------
+Batch: 0
+-------------------------------------------
++-----------+----------+-----------+----------+-------+------+------------------+
+|sepalLength|sepalWidth|petalLength|petalWidth|species|offset|               foo|
++-----------+----------+-----------+----------+-------+------+------------------+
+|       null|      null|       null|      null|   null|     0|              null|
+|        5.1|       3.5|        1.4|       0.2| setosa|     1| 3.642857136775036|
+|        4.9|       3.0|        1.4|       0.2| setosa|     2| 3.500000127724241|
+|        4.7|       3.2|        1.3|       0.2| setosa|     3|3.6153846012770066|
+|        4.6|       3.1|        1.5|       0.2| setosa|     4| 3.066666603088379|
++-----------+----------+-----------+----------+-------+------+------------------+
+
+-------------------------------------------
+Batch: 1
+-------------------------------------------
++-----------+----------+-----------+----------+-------+------+------------------+
+|sepalLength|sepalWidth|petalLength|petalWidth|species|offset|               foo|
++-----------+----------+-----------+----------+-------+------+------------------+
+|        5.0|       3.6|        1.4|       0.2| setosa|     5|3.5714286322496385|
+|        5.4|       3.9|        1.7|       0.4| setosa|     6| 3.176470555236184|
+|        4.6|       3.4|        1.4|       0.3| setosa|     7|3.2857142735500724|
+|        5.0|       3.4|        1.5|       0.2| setosa|     8|3.3333333333333335|
+|        4.4|       2.9|        1.4|       0.2| setosa|     9| 3.142857264499277|
++-----------+----------+-----------+----------+-------+------+------------------+
+
+out.stop()
+>>>
+
