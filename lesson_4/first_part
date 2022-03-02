@@ -1,0 +1,329 @@
+
+Last login: Mon Feb  7 17:08:28 2022 from 146.66.183.48
+[student897_3@bigdataanalytics-worker-3 ~]$ export SPARK_KAFKA_VERSION=0.10
+
+[student897_3@bigdataanalytics-worker-3 ~]$ /opt/spark-2.4.8/bin/pyspark --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.4.5
+
+Python 2.7.5 (default, Nov 16 2020, 22:23:17)
+[GCC 4.8.5 20150623 (Red Hat 4.8.5-44)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+Ivy Default Cache set to: /home/student897_3/.ivy2/cache
+The jars for the packages stored in: /home/student897_3/.ivy2/jars
+:: loading settings :: url = jar:file:/opt/spark-2.4.8/jars/ivy-2.4.0.jar!/org/apache/ivy/core/settings/ivysettings.xml
+org.apache.spark#spark-sql-kafka-0-10_2.11 added as a dependency
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-6ea3d431-84d6-44c7-8f69-cfbd61698d96;1.0
+        confs: [default]
+        found org.apache.spark#spark-sql-kafka-0-10_2.11;2.4.5 in central
+        found org.apache.kafka#kafka-clients;2.0.0 in central
+        found org.lz4#lz4-java;1.4.0 in central
+        found org.xerial.snappy#snappy-java;1.1.7.3 in central
+        found org.slf4j#slf4j-api;1.7.16 in central
+        found org.spark-project.spark#unused;1.0.0 in central
+downloading https://repo1.maven.org/maven2/org/apache/spark/spark-sql-kafka-0-10_2.11/2.4.5/spark-sql-kafka-0-10_2.11-2.4.5.jar ...
+        [SUCCESSFUL ] org.apache.spark#spark-sql-kafka-0-10_2.11;2.4.5!spark-sql-kafka-0-10_2.11.jar (112ms)
+downloading https://repo1.maven.org/maven2/org/apache/kafka/kafka-clients/2.0.0/kafka-clients-2.0.0.jar ...
+        [SUCCESSFUL ] org.apache.kafka#kafka-clients;2.0.0!kafka-clients.jar (119ms)
+downloading https://repo1.maven.org/maven2/org/spark-project/spark/unused/1.0.0/unused-1.0.0.jar ...
+        [SUCCESSFUL ] org.spark-project.spark#unused;1.0.0!unused.jar (36ms)
+downloading https://repo1.maven.org/maven2/org/lz4/lz4-java/1.4.0/lz4-java-1.4.0.jar ...
+        [SUCCESSFUL ] org.lz4#lz4-java;1.4.0!lz4-java.jar (50ms)
+downloading https://repo1.maven.org/maven2/org/xerial/snappy/snappy-java/1.1.7.3/snappy-java-1.1.7.3.jar ...
+        [SUCCESSFUL ] org.xerial.snappy#snappy-java;1.1.7.3!snappy-java.jar(bundle) (106ms)
+downloading https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.16/slf4j-api-1.7.16.jar ...
+        [SUCCESSFUL ] org.slf4j#slf4j-api;1.7.16!slf4j-api.jar (37ms)
+:: resolution report :: resolve 5496ms :: artifacts dl 466ms
+        :: modules in use:
+        org.apache.kafka#kafka-clients;2.0.0 from central in [default]
+        org.apache.spark#spark-sql-kafka-0-10_2.11;2.4.5 from central in [default]
+        org.lz4#lz4-java;1.4.0 from central in [default]
+        org.slf4j#slf4j-api;1.7.16 from central in [default]
+        org.spark-project.spark#unused;1.0.0 from central in [default]
+        org.xerial.snappy#snappy-java;1.1.7.3 from central in [default]
+
+
+        ---------------------------------------------------------------------
+        |                  |            modules            ||   artifacts   |
+        |       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+        ---------------------------------------------------------------------
+        |      default     |   6   |   6   |   6   |   0   ||   6   |   6   |
+        ---------------------------------------------------------------------
+:: retrieving :: org.apache.spark#spark-submit-parent-6ea3d431-84d6-44c7-8f69-cfbd61698d96
+        confs: [default]
+        6 artifacts copied, 0 already retrieved (4749kB/18ms)
+22/02/08 16:34:34 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+22/02/08 16:34:36 WARN util.Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /__ / .__/\_,_/_/ /_/\_\   version 2.4.8
+      /_/
+
+Using Python version 2.7.5 (default, Nov 16 2020 22:23:17)
+SparkSession available as 'spark'.
+>>> from pyspark.sql import functions as F
+>>> from pyspark.sql.types import StructType, StringType, FloatType
+>>> kafka_brokers = "bigdataanalytics-worker-3:6667"
+>>> raw_data = spark.readStream. \
+...     format("kafka"). \
+...     option("kafka.bootstrap.servers", kafka_brokers). \
+...     option("subscribe", "shadrin_iris_pikalev"). \
+...     option("startingOffsets", "earliest"). \
+...     option("maxOffsetsPerTrigger", "5"). \
+...     load()
+>>> schema = StructType() \
+...     .add("sepalLength", FloatType()) \
+...     .add("sepalWidth", FloatType()) \
+...     .add("petalLength", FloatType()) \
+...     .add("petalWidth", FloatType()) \
+...     .add("species", StringType())
+>>> parsed_iris = raw_data \
+...     .select(F.from_json(F.col("value").cast("String"), schema).alias("value"), "offset") \
+...     .select("value.*", "offset")
+>>> def console_output(df, freq):
+...     return df.writeStream \
+...         .format("console") \
+...         .trigger(processingTime='%s seconds' % freq ) \
+...         .options(truncate=False) \
+...         .start()
+...
+>>> out = console_output(parsed_iris, 5)
+22/02/08 16:42:01 WARN shortcircuit.DomainSocketFactory: The short-circuit local reads feature cannot be used because libhadoop cannot be loaded.
+
+
+-------------------------------------------
+Batch: 0
+-------------------------------------------
++-----------+----------+-----------+----------+-------+------+
+|sepalLength|sepalWidth|petalLength|petalWidth|species|offset|
++-----------+----------+-----------+----------+-------+------+
+|null       |null      |null       |null      |null   |0     |
+|5.1        |3.5       |1.4        |0.2       |setosa |1     |
+|4.9        |3.0       |1.4        |0.2       |setosa |2     |
+|4.7        |3.2       |1.3        |0.2       |setosa |3     |
+|4.6        |3.1       |1.5        |0.2       |setosa |4     |
++-----------+----------+-----------+----------+-------+------+
+
+22/02/08 16:42:07 WARN streaming.ProcessingTimeExecutor: Current batch is falling behind. The trigger interval is 5000 milliseconds, but spent 6002 milliseconds
+-------------------------------------------
+Batch: 1
+-------------------------------------------
++-----------+----------+-----------+----------+-------+------+
+|sepalLength|sepalWidth|petalLength|petalWidth|species|offset|
++-----------+----------+-----------+----------+-------+------+
+|5.0        |3.6       |1.4        |0.2       |setosa |5     |
+|5.4        |3.9       |1.7        |0.4       |setosa |6     |
+|4.6        |3.4       |1.4        |0.3       |setosa |7     |
+|5.0        |3.4       |1.5        |0.2       |setosa |8     |
+|4.4        |2.9       |1.4        |0.2       |setosa |9     |
++-----------+----------+-----------+----------+-------+------+
+
+-------------------------------------------
+Batch: 2
+-------------------------------------------
++-----------+----------+-----------+----------+-------+------+
+|sepalLength|sepalWidth|petalLength|petalWidth|species|offset|
++-----------+----------+-----------+----------+-------+------+
+|4.9        |3.1       |1.5        |0.1       |setosa |10    |
+|5.4        |3.7       |1.5        |0.2       |setosa |11    |
+|4.8        |3.4       |1.6        |0.2       |setosa |12    |
+|4.8        |3.0       |1.4        |0.1       |setosa |13    |
+|4.3        |3.0       |1.1        |0.1       |setosa |14    |
++-----------+----------+-----------+----------+-------+------+
+
+-------------------------------------------
+Batch: 3
+-------------------------------------------
++-----------+----------+-----------+----------+-------+------+
+|sepalLength|sepalWidth|petalLength|petalWidth|species|offset|
++-----------+----------+-----------+----------+-------+------+
+|5.8        |4.0       |1.2        |0.2       |setosa |15    |
+|5.7        |4.4       |1.5        |0.4       |setosa |16    |
+|5.4        |3.9       |1.3        |0.4       |setosa |17    |
+|5.1        |3.5       |1.4        |0.3       |setosa |18    |
+|5.7        |3.8       |1.7        |0.3       |setosa |19    |
++-----------+----------+-----------+----------+-------+------+
+
+out.stop()
+>>> def memory_sink(df, freq):
+...     return df.writeStream.format("memory") \
+...         .queryName("my_memory_sink_table") \
+...         .trigger(processingTime='%s seconds' % freq ) \
+...         .start()
+...
+>>> stream = memory_sink(parsed_iris, 10)
+>>> spark.sql("select * from my_memory_sink_table").show()
++-----------+----------+-----------+----------+-------+------+
+|sepalLength|sepalWidth|petalLength|petalWidth|species|offset|
++-----------+----------+-----------+----------+-------+------+
+|       null|      null|       null|      null|   null|     0|
+|        5.1|       3.5|        1.4|       0.2| setosa|     1|
+|        4.9|       3.0|        1.4|       0.2| setosa|     2|
+|        4.7|       3.2|        1.3|       0.2| setosa|     3|
+|        4.6|       3.1|        1.5|       0.2| setosa|     4|
+|        5.0|       3.6|        1.4|       0.2| setosa|     5|
+|        5.4|       3.9|        1.7|       0.4| setosa|     6|
+|        4.6|       3.4|        1.4|       0.3| setosa|     7|
+|        5.0|       3.4|        1.5|       0.2| setosa|     8|
+|        4.4|       2.9|        1.4|       0.2| setosa|     9|
++-----------+----------+-----------+----------+-------+------+
+
+>>> spark.sql("select count(*) from my_memory_sink_table").show()
++--------+
+|count(1)|
++--------+
+|      30|
++--------+
+
+>>> stream.stop()
+>>> def file_sink(df, freq):
+...     return df.writeStream.format("parquet") \
+...         .trigger(processingTime='%s seconds' % freq ) \
+...         .option("path","my_parquet_sink") \
+...         .option("checkpointLocation", "shadrin_iris_file_checkpoint") \
+...         .start()
+...
+>>> stream = file_sink(parsed_iris, 5)
+>>> stream.stop()
+>>> def kafka_sink(df, freq):
+...     return df.selectExpr("CAST(null AS STRING) as key", "CAST(struct(*) AS STRING) as value") \
+...         .writeStream \
+...         .format("kafka") \
+...         .trigger(processingTime='%s seconds' % freq ) \
+...         .option("topic", "shadrin_iris_sink_pikalev") \
+...         .option("kafka.bootstrap.servers", kafka_brokers) \
+...         .option("checkpointLocation", "shadrin_iris_kafka_checkpoint") \
+...         .start()
+...
+>>> stream = kafka_sink(parsed_iris, 5)
+>>> stream.stop()
+>>> def kafka_sink_json(df, freq):
+...     return df.selectExpr("CAST(null AS STRING) as key", "CAST(to_json(struct(*)) AS STRING) as value") \
+...         .writeStream \
+...         .format("kafka") \
+...         .trigger(processingTime='%s seconds' % freq ) \
+...         .option("topic", "shadrin_iris_sink_pikalev") \
+...         .option("kafka.bootstrap.servers", kafka_brokers) \
+...         .option("checkpointLocation", "shadrin_iris_kafka_checkpoint") \
+...         .start()
+...
+>>> stream = kafka_sink_json(parsed_iris, 5)
+>>> stream.stop()
+>>> 22/02/08 17:17:32 WARN clients.NetworkClient: [Producer clientId=producer-1]Error while fetching metadata with correlation id 38 : {shadrin_iris_sink_pikal                                                                              ev=LEADER_NOT_AVAILABLE}
+
+>>> extended_iris = parsed_iris.withColumn("my_current_time", F.current_timestamp())
+>>> def foreach_batch_sink(df, freq):
+...     return  df \
+...         .writeStream \
+...         .foreachBatch(foreach_batch_function) \
+...         .trigger(processingTime='%s seconds' % freq ) \
+...         .start()
+...
+>>> def foreach_batch_function(df, epoch_id):
+...     print("starting epoch " + str(epoch_id) )
+...     print("average values for batch:")
+...     df.groupBy("species").avg().show()
+...     print("finishing epoch " + str(epoch_id))
+...
+>>> stream = foreach_batch_sink(extended_iris, 5)
+>>> starting epoch 0
+average values for batch:
++-------+-----------------+-----------------+-----------------+-------------------+-----------+
+|species| avg(sepalLength)|  avg(sepalWidth)| avg(petalLength)|    avg(petalWidth)|avg(offset)|
++-------+-----------------+-----------------+-----------------+-------------------+-----------+
+|   null|             null|             null|             null|               null|        0.0|
+| setosa|4.824999928474426|3.199999988079071|1.399999976158142|0.20000000298023224|        2.5|
++-------+-----------------+-----------------+-----------------+-------------------+-----------+
+
+finishing epoch 0
+starting epoch 1
+average values for batch:
++-------+-----------------+-----------------+------------------+-------------------+-----------+
+|species| avg(sepalLength)|  avg(sepalWidth)|  avg(petalLength)|    avg(petalWidth)|avg(offset)|
++-------+-----------------+-----------------+------------------+-------------------+-----------+
+| setosa|4.880000019073487|3.440000057220459|1.4799999952316285|0.26000000536441803|        7.0|
++-------+-----------------+-----------------+------------------+-------------------+-----------+
+
+finishing epoch 1
+starting epoch 2
+average values for batch:
++-------+-----------------+-----------------+------------------+-------------------+-----------+
+|species| avg(sepalLength)|  avg(sepalWidth)|  avg(petalLength)|    avg(petalWidth)|avg(offset)|
++-------+-----------------+-----------------+------------------+-------------------+-----------+
+| setosa|4.840000152587891|3.240000009536743|1.4200000047683716|0.14000000208616256|       12.0|
++-------+-----------------+-----------------+------------------+-------------------+-----------+
+
+finishing epoch 2
+starting epoch 3
+average values for batch:
++-------+-----------------+------------------+------------------+---------------                                                                              ---+-----------+
+|species| avg(sepalLength)|   avg(sepalWidth)|  avg(petalLength)|   avg(petalWid                                                                              th)|avg(offset)|
++-------+-----------------+------------------+------------------+---------------                                                                              ---+-----------+
+| setosa|5.539999961853027|3.9200000286102297|1.4200000047683716|0.3200000077486                                                                              038|       17.0|
++-------+-----------------+------------------+------------------+---------------                                                                              ---+-----------+
+
+finishing epoch 3
+starting epoch 4
+average values for batch:
++-------+-----------------+------------------+------------------+---------------                                                                              ---+-----------+
+|species| avg(sepalLength)|   avg(sepalWidth)|  avg(petalLength)|   avg(petalWid                                                                              th)|avg(offset)|
++-------+-----------------+------------------+------------------+---------------                                                                              ---+-----------+
+| setosa|5.059999942779541|3.5599999904632567|1.4800000190734863|0.3200000047683                                                                              716|       22.0|
++-------+-----------------+------------------+------------------+---------------                                                                              ---+-----------+
+
+finishing epoch 4
+starting epoch 5
+average values for batch:
++-------+-----------------+-----------------+----------------+------------------                                                                              -+-----------+
+|species| avg(sepalLength)|  avg(sepalWidth)|avg(petalLength)|    avg(petalWidth                                                                              )|avg(offset)|
++-------+-----------------+-----------------+----------------+------------------                                                                              -+-----------+
+| setosa|5.039999961853027|3.340000057220459|             1.6|0.2400000035762786                                                                              8|       27.0|
++-------+-----------------+-----------------+----------------+------------------                                                                              -+-----------+
+
+finishing epoch 5
+starting epoch 6
+average values for batch:
++-------+-----------------+-----------------+------------------+----------------                                                                              ---+-----------+
+|species| avg(sepalLength)|  avg(sepalWidth)|  avg(petalLength)|    avg(petalWid                                                                              th)|avg(offset)|
++-------+-----------------+-----------------+------------------+----------------                                                                              ---+-----------+
+| setosa|5.119999980926513|3.599999952316284|1.5200000047683715|0.22000000327825                                                                              547|       32.0|
++-------+-----------------+-----------------+------------------+----------------                                                                              ---+-----------+
+
+finishing epoch 6
+starting epoch 7
+average values for batch:
++-------+-----------------+------------------+------------------+---------------                                                                              --+-----------+
+|species| avg(sepalLength)|   avg(sepalWidth)|  avg(petalLength)|  avg(petalWidt                                                                              h)|avg(offset)|
++-------+-----------------+------------------+------------------+---------------                                                                              --+-----------+
+| setosa|4.940000057220459|3.2799999713897705|1.3399999856948852|0.1800000026822                                                                              09|       37.0|
++-------+-----------------+------------------+------------------+---------------                                                                              --+-----------+
+
+finishing epoch 7
+stream.stop()starting epoch 8
+average values for batch:
++-------+----------------+------------------+-----------------+-----------------                                                                              --+-----------+
+|species|avg(sepalLength)|   avg(sepalWidth)| avg(petalLength)|    avg(petalWidt                                                                              h)|avg(offset)|
++-------+----------------+------------------+-----------------+-----------------                                                                              --+-----------+
+| setosa|             4.8|3.1800000190734865|1.399999976158142|0.320000010728836                                                                              05|       42.0|
++-------+----------------+------------------+-----------------+-----------------                                                                              --+-----------+
+
+finishing epoch 8
+stream.stop()
+  File "<stdin>", line 1
+    stream.stop()stream.stop()
+                      ^
+SyntaxError: invalid syntax
+>>> starting epoch 9
+average values for batch:
++-------+-----------------+---------------+------------------+------------------                                                                              -+-----------+
+|species| avg(sepalLength)|avg(sepalWidth)|  avg(petalLength)|    avg(petalWidth                                                                              )|avg(offset)|
++-------+-----------------+---------------+------------------+------------------                                                                              -+-----------+
+| setosa|4.980000019073486|            3.5|1.5599999904632569|0.2600000053644180                                                                              3|       47.0|
++-------+-----------------+---------------+------------------+------------------                                                                              -+-----------+
+
+finishing epoch 9
+stream.stop()
+>>>
+
