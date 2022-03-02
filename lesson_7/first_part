@@ -1,0 +1,190 @@
+[student897_3@bigdataanalytics-worker-3 ~]$ vi 7.spark-submit-batch.py
+[student897_3@bigdataanalytics-worker-3 ~]$ spark-submit 7.spark-submit-batch.py
+SPARK_MAJOR_VERSION is set to 2, using Spark2
+22/02/23 15:07:30 INFO SparkContext: Running Spark version 2.3.2.3.1.4.0-315
+22/02/23 15:07:30 INFO SparkContext: Submitted application: gogin_spark
+22/02/23 15:07:30 INFO SecurityManager: Changing view acls to: student897_3
+22/02/23 15:07:30 INFO SecurityManager: Changing modify acls to: student897_3
+22/02/23 15:07:30 INFO SecurityManager: Changing view acls groups to:
+22/02/23 15:07:30 INFO SecurityManager: Changing modify acls groups to:
+22/02/23 15:07:30 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(student897_3); groups with view permissions: Set(); users  with modify permissions: Set(student897_3); groups with modify permissions: Set()
+22/02/23 15:07:30 INFO Utils: Successfully started service 'sparkDriver' on port 39670.
+22/02/23 15:07:30 INFO SparkEnv: Registering MapOutputTracker
+22/02/23 15:07:30 INFO SparkEnv: Registering BlockManagerMaster
+22/02/23 15:07:30 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+22/02/23 15:07:30 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+22/02/23 15:07:30 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-d4453f0f-2f39-4298-a63e-adca3d5d9154
+22/02/23 15:07:30 INFO MemoryStore: MemoryStore started with capacity 366.3 MB
+22/02/23 15:07:30 INFO SparkEnv: Registering OutputCommitCoordinator
+22/02/23 15:07:31 INFO log: Logging initialized @3317ms
+22/02/23 15:07:31 INFO Server: jetty-9.3.z-SNAPSHOT, build timestamp: 2018-06-05T17:11:56Z, git hash: 84205aa28f11a4f31f2a3b86d1bba2cc8ab69827
+22/02/23 15:07:31 INFO Server: Started @3412ms
+22/02/23 15:07:31 INFO AbstractConnector: Started ServerConnector@242dfcb{HTTP/1.1,[http/1.1]}{0.0.0.0:4040}
+22/02/23 15:07:31 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+22/02/23 15:07:31 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@891a989{/jobs,null,AVAILABLE,@Spark}
+22/02/23 15:07:31 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@6aa20d31{/jobs/json,null,AVAILABLE,@Spark}
+22/02/23 15:07:31 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@43b99467{/jobs/job,null,AVAILABLE,@Spark}
+22/02/23 15:07:31 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@de6e8f1{/jobs/job/json,null,AVAILABLE,@Spark}
+22/02/23 15:07:31 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@77d7a7f9{/stages,null,AVAILABLE,@Spark}
+22/02/23 15:07:31 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@78c20fc8{/stages/json,null,AVAILABLE,@Spark}
+22/02/23 15:07:31 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@273c802{/stages/stage,null,AVAILABLE,@Spark}
+22/02/23 15:07:31 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@1a1e7498{/stages/stage/json,null,AVAILABLE,@Spark}
+22/02/23 15:07:31 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@6b18c01{/stages/pool,null,AVAILABLE,@Spark}
+22/02/23 15:07:31 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@7e6fcbeb{/stages/pool/json,null,AVAILABLE,@Spark}
+22/02/23 15:07:31 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@5849fd49{/storage,null,AVAILABLE,@Spark}
+22/02/23 15:07:31 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@319af86c{/storage/json,null,AVAILABLE,@Spark}
+22/02/23 15:07:31 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@3bc1abda{/storage/rdd,null,AVAILABLE,@Spark}
+22/02/23 15:07:31 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@3bf11fda{/storage/rdd/json,null,AVAILABLE,@Spark}
+22/02/23 15:07:31 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@2c451e58{/environment,null,AVAILABLE,@Spark}
+22/02/23 15:07:31 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@4afaca24{/environment/json,null,AVAILABLE,@Spark}
+22/02/23 15:07:31 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@7cd327da{/executors,null,AVAILABLE,@Spark}
+22/02/23 15:07:31 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@4feff855{/executors/json,null,AVAILABLE,@Spark}
+22/02/23 15:07:31 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@4bdc882e{/executors/threadDump,null,AVAILABLE,@Spark}
+22/02/23 15:07:31 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@57ebc09b{/executors/threadDump/json,null,AVAILABLE,@Spark}
+22/02/23 15:07:31 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@3263c04b{/static,null,AVAILABLE,@Spark}
+22/02/23 15:07:31 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@208a140c{/,null,AVAILABLE,@Spark}
+22/02/23 15:07:31 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@7a9b8dfe{/api,null,AVAILABLE,@Spark}
+22/02/23 15:07:31 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@cbf4ed5{/jobs/job/kill,null,AVAILABLE,@Spark}
+22/02/23 15:07:31 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@669adeaf{/stages/stage/kill,null,AVAILABLE,@Spark}
+22/02/23 15:07:31 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://bigdataanalytics-worker-3.mcs.local:4040
+22/02/23 15:07:32 INFO RMProxy: Connecting to ResourceManager at bigdataanalytics-head-0.mcs.local/10.0.0.5:8050
+22/02/23 15:07:32 INFO Client: Requesting a new application from cluster with 4 NodeManagers
+22/02/23 15:07:32 INFO Configuration: found resource resource-types.xml at file:/etc/hadoop/3.1.4.0-315/0/resource-types.xml
+22/02/23 15:07:32 INFO Client: Verifying our application has not requested more than the maximum memory capability of the cluster (5120 MB per container)
+22/02/23 15:07:32 INFO Client: Will allocate AM container, with 896 MB memory including 384 MB overhead
+22/02/23 15:07:32 INFO Client: Setting up container launch context for our AM
+22/02/23 15:07:32 INFO Client: Setting up the launch environment for our AM container
+22/02/23 15:07:32 INFO Client: Preparing resources for our AM container
+22/02/23 15:07:34 INFO Client: Use hdfs cache file as spark.yarn.archive for HDP, hdfsCacheFile:hdfs://bigdataanalytics-head-0.mcs.local:8020/hdp/apps/3.1.4.0-315/spark2/spark2-hdp-yarn-archive.tar.gz
+22/02/23 15:07:34 INFO Client: Source and destination file systems are the same. Not copying hdfs://bigdataanalytics-head-0.mcs.local:8020/hdp/apps/3.1.4.0-315/spark2/spark2-hdp-yarn-archive.tar.gz
+22/02/23 15:07:34 INFO Client: Distribute hdfs cache file as spark.sql.hive.metastore.jars for HDP, hdfsCacheFile:hdfs://bigdataanalytics-head-0.mcs.local:8020/hdp/apps/3.1.4.0-315/spark2/spark2-hdp-hive-archive.tar.gz
+22/02/23 15:07:34 INFO Client: Source and destination file systems are the same. Not copying hdfs://bigdataanalytics-head-0.mcs.local:8020/hdp/apps/3.1.4.0-315/spark2/spark2-hdp-hive-archive.tar.gz
+22/02/23 15:07:34 INFO Client: Uploading resource file:/usr/hdp/current/spark2-client/python/lib/pyspark.zip -> hdfs://bigdataanalytics-head-0.mcs.local:8020/user/student897_3/.sparkStaging/application_1640106212587_0612/pyspark.zip
+22/02/23 15:07:34 INFO Client: Uploading resource file:/usr/hdp/current/spark2-client/python/lib/py4j-0.10.7-src.zip -> hdfs://bigdataanalytics-head-0.mcs.local:8020/user/student897_3/.sparkStaging/application_1640106212587_0612/py4j-0.10.7-src.zip
+22/02/23 15:07:34 INFO Client: Uploading resource file:/tmp/spark-deb7c6df-1c5c-4537-aeec-2737c2848d09/__spark_conf__9175845819472855902.zip -> hdfs://bigdataanalytics-head-0.mcs.local:8020/user/student897_3/.sparkStaging/application_1640106212587_0612/__spark_conf__.zip
+22/02/23 15:07:34 INFO SecurityManager: Changing view acls to: student897_3
+22/02/23 15:07:34 INFO SecurityManager: Changing modify acls to: student897_3
+22/02/23 15:07:34 INFO SecurityManager: Changing view acls groups to:
+22/02/23 15:07:34 INFO SecurityManager: Changing modify acls groups to:
+22/02/23 15:07:34 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(student897_3); groups with view permissions: Set(); users  with modify permissions: Set(student897_3); groups with modify permissions: Set()
+22/02/23 15:07:34 INFO Client: Submitting application application_1640106212587_0612 to ResourceManager
+22/02/23 15:07:35 INFO YarnClientImpl: Submitted application application_1640106212587_0612
+22/02/23 15:07:35 INFO SchedulerExtensionServices: Starting Yarn extension services with app application_1640106212587_0612 and attemptId None
+22/02/23 15:07:36 INFO Client: Application report for application_1640106212587_0612 (state: ACCEPTED)
+22/02/23 15:07:36 INFO Client:
+         client token: N/A
+         diagnostics: AM container is launched, waiting for AM container to Register with RM
+         ApplicationMaster host: N/A
+         ApplicationMaster RPC port: -1
+         queue: default
+         start time: 1645628854959
+         final status: UNDEFINED
+         tracking URL: http://bigdataanalytics-head-0.mcs.local:8088/proxy/application_1640106212587_0612/
+         user: student897_3
+22/02/23 15:07:37 INFO Client: Application report for application_1640106212587_0612 (state: ACCEPTED)
+22/02/23 15:07:38 INFO Client: Application report for application_1640106212587_0612 (state: ACCEPTED)
+22/02/23 15:07:38 INFO YarnClientSchedulerBackend: Add WebUI Filter. org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter, Map(PROXY_HOSTS -> bigdataanalytics-head-0.mcs.local, PROXY_URI_BASES -> http://bigdataanalytics-head-0.mcs.local:8088/proxy/application_1640106212587_0612), /proxy/application_1640106212587_0612
+22/02/23 15:07:38 INFO JettyUtils: Adding filter org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter to /jobs, /jobs/json, /jobs/job, /jobs/job/json, /stages, /stages/json, /stages/stage, /stages/stage/json, /stages/pool, /stages/pool/json, /storage, /storage/json, /storage/rdd, /storage/rdd/json, /environment, /environment/json, /executors, /executors/json, /executors/threadDump, /executors/threadDump/json, /static, /, /api, /jobs/job/kill, /stages/stage/kill.
+22/02/23 15:07:38 INFO YarnSchedulerBackend$YarnSchedulerEndpoint: ApplicationMaster registered as NettyRpcEndpointRef(spark-client://YarnAM)
+22/02/23 15:07:39 INFO Client: Application report for application_1640106212587_0612 (state: RUNNING)
+22/02/23 15:07:39 INFO Client:
+         client token: N/A
+         diagnostics: N/A
+         ApplicationMaster host: 10.0.0.21
+         ApplicationMaster RPC port: 0
+         queue: default
+         start time: 1645628854959
+         final status: UNDEFINED
+         tracking URL: http://bigdataanalytics-head-0.mcs.local:8088/proxy/application_1640106212587_0612/
+         user: student897_3
+22/02/23 15:07:39 INFO YarnClientSchedulerBackend: Application application_1640106212587_0612 has started running.
+22/02/23 15:07:39 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 33297.
+22/02/23 15:07:39 INFO NettyBlockTransferService: Server created on bigdataanalytics-worker-3.mcs.local:33297
+22/02/23 15:07:39 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+22/02/23 15:07:39 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, bigdataanalytics-worker-3.mcs.local, 33297, None)
+22/02/23 15:07:39 INFO BlockManagerMasterEndpoint: Registering block manager bigdataanalytics-worker-3.mcs.local:33297 with 366.3 MB RAM, BlockManagerId(driver, bigdataanalytics-worker-3.mcs.local, 33297, None)
+22/02/23 15:07:39 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, bigdataanalytics-worker-3.mcs.local, 33297, None)
+22/02/23 15:07:39 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, bigdataanalytics-worker-3.mcs.local, 33297, None)
+22/02/23 15:07:39 INFO JettyUtils: Adding filter org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter to /metrics/json.
+22/02/23 15:07:39 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@5fab3d6b{/metrics/json,null,AVAILABLE,@Spark}
+22/02/23 15:07:40 INFO EventLoggingListener: Logging events to hdfs:/spark2-history/application_1640106212587_0612
+22/02/23 15:07:42 INFO YarnSchedulerBackend$YarnDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.0.0.29:58970) with ID 2
+22/02/23 15:07:42 INFO YarnSchedulerBackend$YarnDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.0.0.6:55548) with ID 1
+22/02/23 15:07:42 INFO BlockManagerMasterEndpoint: Registering block manager bigdataanalytics-worker-1.mcs.local:43771 with 366.3 MB RAM, BlockManagerId(2, bigdataanalytics-worker-1.mcs.local, 43771, None)
+22/02/23 15:07:42 INFO BlockManagerMasterEndpoint: Registering block manager bigdataanalytics-worker-3.mcs.local:46450 with 366.3 MB RAM, BlockManagerId(1, bigdataanalytics-worker-3.mcs.local, 46450, None)
+22/02/23 15:07:42 INFO YarnClientSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.8
+22/02/23 15:07:43 INFO SharedState: loading hive config file: file:/etc/spark2/3.1.4.0-315/0/hive-site.xml
+22/02/23 15:07:43 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir ('/apps/spark/warehouse').
+22/02/23 15:07:43 INFO SharedState: Warehouse path is '/apps/spark/warehouse'.
+22/02/23 15:07:43 INFO JettyUtils: Adding filter org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter to /SQL.
+22/02/23 15:07:43 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@4df66393{/SQL,null,AVAILABLE,@Spark}
+22/02/23 15:07:43 INFO JettyUtils: Adding filter org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter to /SQL/json.
+22/02/23 15:07:43 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@2680471a{/SQL/json,null,AVAILABLE,@Spark}
+22/02/23 15:07:43 INFO JettyUtils: Adding filter org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter to /SQL/execution.
+22/02/23 15:07:43 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@41aab272{/SQL/execution,null,AVAILABLE,@Spark}
+22/02/23 15:07:43 INFO JettyUtils: Adding filter org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter to /SQL/execution/json.
+22/02/23 15:07:43 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@494d3bd8{/SQL/execution/json,null,AVAILABLE,@Spark}
+22/02/23 15:07:43 INFO JettyUtils: Adding filter org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter to /static/sql.
+22/02/23 15:07:43 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@302241c1{/static/sql,null,AVAILABLE,@Spark}
+22/02/23 15:07:43 INFO StateStoreCoordinatorRef: Registered StateStoreCoordinator endpoint
+START BATCH LOADING. TIME = 20220223150744
+22/02/23 15:07:44 INFO FileSourceStrategy: Pruning directories with:
+22/02/23 15:07:44 INFO FileSourceStrategy: Post-Scan Filters:
+22/02/23 15:07:44 INFO FileSourceStrategy: Output Data Schema: struct<sector: string, name: string, region: string ... 1 more fields>
+22/02/23 15:07:44 INFO FileSourceScanExec: Pushed Filters:
+22/02/23 15:07:45 INFO ParquetFileFormat: Using default output committer for Parquet: org.apache.parquet.hadoop.ParquetOutputCommitter
+22/02/23 15:07:45 INFO FileOutputCommitter: File Output Committer Algorithm version is 2
+22/02/23 15:07:45 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+22/02/23 15:07:45 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+22/02/23 15:07:45 INFO FileOutputCommitter: File Output Committer Algorithm version is 2
+22/02/23 15:07:45 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+22/02/23 15:07:45 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+22/02/23 15:07:46 INFO CodeGenerator: Code generated in 349.716548 ms
+22/02/23 15:07:46 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 379.7 KB, free 365.9 MB)
+22/02/23 15:07:46 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 32.3 KB, free 365.9 MB)
+22/02/23 15:07:46 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on bigdataanalytics-worker-3.mcs.local:33297 (size: 32.3 KB, free: 366.3 MB)
+22/02/23 15:07:46 INFO SparkContext: Created broadcast 0 from parquet at NativeMethodAccessorImpl.java:0
+22/02/23 15:07:46 INFO FileSourceScanExec: Planning scan with bin packing, max size: 4194304 bytes, open cost is considered as scanning 4194304 bytes.
+22/02/23 15:07:46 INFO SparkContext: Starting job: parquet at NativeMethodAccessorImpl.java:0
+22/02/23 15:07:46 INFO DAGScheduler: Got job 0 (parquet at NativeMethodAccessorImpl.java:0) with 1 output partitions
+22/02/23 15:07:46 INFO DAGScheduler: Final stage: ResultStage 0 (parquet at NativeMethodAccessorImpl.java:0)
+22/02/23 15:07:46 INFO DAGScheduler: Parents of final stage: List()
+22/02/23 15:07:46 INFO DAGScheduler: Missing parents: List()
+22/02/23 15:07:46 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[1] at parquet at NativeMethodAccessorImpl.java:0), which has no missing parents
+22/02/23 15:07:46 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 206.0 KB, free 365.7 MB)
+22/02/23 15:07:46 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 71.9 KB, free 365.6 MB)
+22/02/23 15:07:46 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on bigdataanalytics-worker-3.mcs.local:33297 (size: 71.9 KB, free: 366.2 MB)
+22/02/23 15:07:46 INFO SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:1039
+22/02/23 15:07:46 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[1] at parquet at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+22/02/23 15:07:46 INFO YarnScheduler: Adding task set 0.0 with 1 tasks
+22/02/23 15:07:46 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, bigdataanalytics-worker-1.mcs.local, executor 2, partition 0, NODE_LOCAL, 8377 bytes)
+22/02/23 15:07:47 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on bigdataanalytics-worker-1.mcs.local:43771 (size: 71.9 KB, free: 366.2 MB)
+22/02/23 15:07:49 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on bigdataanalytics-worker-1.mcs.local:43771 (size: 32.3 KB, free: 366.2 MB)
+22/02/23 15:07:50 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 3929 ms on bigdataanalytics-worker-1.mcs.local (executor 2) (1/1)
+22/02/23 15:07:50 INFO YarnScheduler: Removed TaskSet 0.0, whose tasks have all completed, from pool
+22/02/23 15:07:50 INFO DAGScheduler: ResultStage 0 (parquet at NativeMethodAccessorImpl.java:0) finished in 4.135 s
+22/02/23 15:07:50 INFO DAGScheduler: Job 0 finished: parquet at NativeMethodAccessorImpl.java:0, took 4.266801 s
+22/02/23 15:07:50 INFO FileFormatWriter: Job null committed.
+22/02/23 15:07:50 INFO FileFormatWriter: Finished processing stats for job null.
+FINISHED BATCH LOADING. TIME = 20220223150744
+22/02/23 15:07:50 INFO AbstractConnector: Stopped Spark@242dfcb{HTTP/1.1,[http/1.1]}{0.0.0.0:4040}
+22/02/23 15:07:50 INFO SparkUI: Stopped Spark web UI at http://bigdataanalytics-worker-3.mcs.local:4040
+22/02/23 15:07:50 INFO YarnClientSchedulerBackend: Interrupting monitor thread
+22/02/23 15:07:50 INFO YarnClientSchedulerBackend: Shutting down all executors
+22/02/23 15:07:50 INFO YarnSchedulerBackend$YarnDriverEndpoint: Asking each executor to shut down
+22/02/23 15:07:50 INFO SchedulerExtensionServices: Stopping SchedulerExtensionServices
+(serviceOption=None,
+ services=List(),
+ started=false)
+22/02/23 15:07:50 INFO YarnClientSchedulerBackend: Stopped
+22/02/23 15:07:50 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+22/02/23 15:07:51 INFO MemoryStore: MemoryStore cleared
+22/02/23 15:07:51 INFO BlockManager: BlockManager stopped
+22/02/23 15:07:51 INFO BlockManagerMaster: BlockManagerMaster stopped
+22/02/23 15:07:51 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+22/02/23 15:07:51 INFO SparkContext: Successfully stopped SparkContext
+22/02/23 15:07:51 INFO ShutdownHookManager: Shutdown hook called
+22/02/23 15:07:51 INFO ShutdownHookManager: Deleting directory /tmp/spark-47ca5007-c833-48fd-a057-dcc488659f90
+22/02/23 15:07:51 INFO ShutdownHookManager: Deleting directory /tmp/spark-deb7c6df-1c5c-4537-aeec-2737c2848d09/pyspark-4258ba70-ea4d-4183-bb59-e05b0b84ba52
+22/02/23 15:07:51 INFO ShutdownHookManager: Deleting directory /tmp/spark-deb7c6df-1c5c-4537-aeec-2737c2848d09
+
